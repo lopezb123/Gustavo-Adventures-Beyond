@@ -1,3 +1,3 @@
 # Gustavo-Adventures-Beyond
-College proect for video game design/programming
+University project for CS 4332 - Introduction to Programming Video Games
 hey test
