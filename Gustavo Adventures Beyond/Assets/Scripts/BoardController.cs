@@ -6,12 +6,14 @@ public class BoardController : MonoBehaviour
 {
     private const string HORIZONTAL = "Horizontal";
     private const string VERTICAL = "Vertical";
-
+    private Rigidbody boardRb;
+    private float jumpForce = 6;
     private float horInput;
     private float vertInput;
     private float turnAngle;
     private bool footBrake;
     private float currentBrake;
+    private bool isGrounded = true;
 
     [SerializeField] private float speedForce;
     [SerializeField] private float brakeForce;
@@ -26,38 +28,37 @@ public class BoardController : MonoBehaviour
     [SerializeField] private Transform FRTransform;
     [SerializeField] private Transform BLTransform;
     [SerializeField] private Transform BRTransform;
-
-    private void FixedUpdate()
+    void Start(){
+        boardRb = GetComponent<Rigidbody>();
+    }
+    private void Update()
     {
         GetInput();
+        ApplyJump();
         HandleSpeed();
         HandleSteering();
         UpdateBoard();
+        
     }
 
     private void GetInput()
     {
         horInput = Input.GetAxis(HORIZONTAL);
         vertInput = Input.GetAxis(VERTICAL);
-        footBrake = Input.GetKey(KeyCode.Space);
     }
 
+    private void ApplyJump()
+    {
+         if(Input.GetKeyDown(KeyCode.Space) && isGrounded){
+            boardRb.AddForce(Vector3.up * jumpForce, ForceMode.VelocityChange);
+            isGrounded = false;
+        }
+    }
     private void HandleSpeed()
     {
         FLCollider.motorTorque = vertInput * speedForce;
         FRCollider.motorTorque = vertInput * speedForce;
-        currentBrake = footBrake ? brakeForce : 0f;
-        if(footBrake){
-            ApplyBrakes();
-        }
-    }
-
-    private void ApplyBrakes()
-    {
-        FLCollider.brakeTorque = currentBrake;
-        FRCollider.brakeTorque = currentBrake;
-        BLCollider.brakeTorque = currentBrake;
-        BRCollider.brakeTorque = currentBrake;
+        
     }
 
     private void HandleSteering()
@@ -65,6 +66,7 @@ public class BoardController : MonoBehaviour
         turnAngle = maxAngle * horInput;
         FLCollider.steerAngle = turnAngle;
         FRCollider.steerAngle = turnAngle;
+
     }
 
     private void UpdateBoard()
@@ -82,5 +84,12 @@ public class BoardController : MonoBehaviour
         wCollider.GetWorldPose( out pos, out rot);
         wTransform.rotation = rot;
         wTransform.position = pos;
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if(collision.gameObject.name == "Ground"){
+        isGrounded = true;
+        }
     }
 }
