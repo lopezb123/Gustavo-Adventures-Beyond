@@ -1197,6 +1197,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf8fc71525dd1cb458eaa365271f0daf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  boardBody: {fileID: 6287745966175396156}
   speedForce: 1000
   brakeForce: 3000
   maxAngle: 30
