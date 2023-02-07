@@ -14,6 +14,9 @@ public class BoardController : MonoBehaviour
     private bool footBrake;
     private float currentBrake;
     private bool isGrounded = true;
+    private Vector3 centMass;
+
+    [SerializeField] private Rigidbody boardBody;
 
     [SerializeField] private float speedForce;
     [SerializeField] private float brakeForce;
@@ -29,7 +32,8 @@ public class BoardController : MonoBehaviour
     [SerializeField] private Transform BLTransform;
     [SerializeField] private Transform BRTransform;
     void Start(){
-        boardRb = GetComponent<Rigidbody>();
+        boardRb = boardBody;
+        boardRb.centerOfMass = centMass;
     }
     private void Update()
     {
@@ -37,8 +41,6 @@ public class BoardController : MonoBehaviour
         ApplyJump();
         HandleSpeed();
         HandleSteering();
-        UpdateBoard();
-        
     }
 
     private void GetInput()
@@ -66,25 +68,8 @@ public class BoardController : MonoBehaviour
         turnAngle = maxAngle * horInput;
         FLCollider.steerAngle = turnAngle;
         FRCollider.steerAngle = turnAngle;
-
     }
 
-    private void UpdateBoard()
-    {
-        UpdateWheel(FLCollider, FLTransform);
-        UpdateWheel(FRCollider, FRTransform);
-        UpdateWheel(BLCollider, BLTransform);
-        UpdateWheel(BRCollider, BRTransform);
-    }
-
-    private void UpdateWheel(WheelCollider wCollider, Transform wTransform)
-    {
-        Vector3 pos;
-        Quaternion rot;
-        wCollider.GetWorldPose( out pos, out rot);
-        wTransform.rotation = rot;
-        wTransform.position = pos;
-    }
 
     private void OnCollisionEnter(Collision collision)
     {
