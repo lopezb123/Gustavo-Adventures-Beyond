@@ -881,7 +881,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd100bfe3c58db342b3dd6b4bc5ceb97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  offset: {x: 0, y: 1, z: -2}
+  offset: {x: 0, y: 1, z: -4}
   target: {fileID: 6287745966175396153}
   moveSpeed: 10
   turnSpeed: 10
@@ -1486,7 +1486,7 @@ MonoBehaviour:
   boardBody: {fileID: 6287745966175396156}
   speedForce: 500
   brakeForce: 3000
-  maxAngle: 15
+  maxAngle: 5
   FLCollider: {fileID: 1200362061}
   FRCollider: {fileID: 876391355}
   BLCollider: {fileID: 1588790459}
