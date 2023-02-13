@@ -22,5 +22,12 @@ public class BoardAnimations : MonoBehaviour
         {
             animator.ResetTrigger("OllieTrigger");
         }
+        if(Input.GetKeyDown(KeyCode.K)){
+            animator.SetTrigger("GroundKickFlipTrigger");
+        }
+        else
+        {
+            animator.ResetTrigger("GroundKickFlipTrigger");
+        }
     }
 }
