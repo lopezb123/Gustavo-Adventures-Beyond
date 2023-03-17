@@ -51,16 +51,17 @@ public class BoardController : MonoBehaviour
 
     private void ApplyJump()
     {
-         if(Input.GetKeyDown(KeyCode.Space) && isGrounded){
+        //jump if it is either making contact with an object aka collision is entered or if the board yaxis is on the ground, which is y<0
+         if(Input.GetKeyDown(KeyCode.Space) && (isGrounded || (transform.position.y < 0))){
             boardRb.AddForce(Vector3.up * jumpForce, ForceMode.VelocityChange);
-            isGrounded = false;
          }
     }
     private void HandleSpeed()
     {
         FLCollider.motorTorque = vertInput * speedForce;
         FRCollider.motorTorque = vertInput * speedForce;
-        
+        BLCollider.motorTorque = vertInput * speedForce;
+        BRCollider.motorTorque = vertInput * speedForce;
     }
 
     private void HandleSteering()
@@ -70,15 +71,13 @@ public class BoardController : MonoBehaviour
         FRCollider.steerAngle = turnAngle;
     }
 
+    
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject.name == "Ground"){
-            isGrounded = true;
-        }
-
-        //We need these two functions in this one,
-        //else the player will get stuck on a wall when they collide with it
-        //HandleSpeed();
-        //HandleSteering();
+        isGrounded = true;
+    }
+    private void OnCollisionExit(Collision collision)
+    {
+        isGrounded = false;
     }
 }
