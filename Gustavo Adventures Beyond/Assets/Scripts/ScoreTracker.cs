@@ -15,6 +15,10 @@ public class ScoreTracker : MonoBehaviour
     void Start()
     {
         score.text = totalScore;
+
+        //We can't put airTimeCalculator into update or fixed update because
+        //then it won't add 5 points for every second of airtime, it will add for every frame of airtime
+        InvokeRepeating("airTimeCalculator", 0, 1.0f);
     }
 
     // Update is called once per frame
@@ -22,31 +26,35 @@ public class ScoreTracker : MonoBehaviour
     {
         score.text = totalScore + scoreNum;
         scoreMultiplier();
-
     }
 
     private void trickScores()
     {
-        if(Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space))
         {
-            tempScoreNum+=10;
+            tempScoreNum += 10;
         }
-        else if(Input.GetKeyDown(KeyCode.K))
+        else if (Input.GetKeyDown(KeyCode.K))
         {
-            tempScoreNum+=20;
+            tempScoreNum += 20;
         }
-        scoreNum+=tempScoreNum;
+        scoreNum += tempScoreNum;
     }
 
     private void airTimeCalculator()
     {
-        
+        bool tempBool = GameObject.FindGameObjectWithTag("SkateBoard").GetComponent<BoardController>().getIsGrounded();
+        if (tempBool == false)
+        {
+            //Time.deltaTime is a float, so conversion is needed
+            tempScoreNum += 5;
+        }
     }
 
     private void scoreMultiplier()
     {
         trickScores();
-        airTimeCalculator();
-        tempScoreNum=0;
+        tempScoreNum = 0;
     }
+
 }

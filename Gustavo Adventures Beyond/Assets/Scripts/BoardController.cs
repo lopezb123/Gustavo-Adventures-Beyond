@@ -73,8 +73,16 @@ public class BoardController : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject.name == "Ground"){
         isGrounded = true;
-        }
+    }
+
+    private void OnCollisionExit(Collision collision)
+    {
+        isGrounded = false;
+    }
+
+    public bool getIsGrounded()
+    {
+        return isGrounded;
     }
 }
