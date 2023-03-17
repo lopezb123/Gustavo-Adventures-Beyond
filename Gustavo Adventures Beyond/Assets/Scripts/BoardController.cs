@@ -54,7 +54,7 @@ public class BoardController : MonoBehaviour
          if(Input.GetKeyDown(KeyCode.Space) && isGrounded){
             boardRb.AddForce(Vector3.up * jumpForce, ForceMode.VelocityChange);
             isGrounded = false;
-        }
+         }
     }
     private void HandleSpeed()
     {
@@ -70,11 +70,15 @@ public class BoardController : MonoBehaviour
         FRCollider.steerAngle = turnAngle;
     }
 
-
     private void OnCollisionEnter(Collision collision)
     {
         if(collision.gameObject.name == "Ground"){
-        isGrounded = true;
+            isGrounded = true;
         }
+
+        //We need these two functions in this one,
+        //else the player will get stuck on a wall when they collide with it
+        //HandleSpeed();
+        //HandleSteering();
     }
 }
