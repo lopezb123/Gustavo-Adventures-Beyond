@@ -30,7 +30,8 @@ public class ScoreTracker : MonoBehaviour
 
     private void trickScores()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        bool tempBool = GameObject.FindGameObjectWithTag("SkateBoard").GetComponent<BoardController>().getIsGrounded();
+        if (Input.GetKeyDown(KeyCode.Space) && tempBool)
         {
             tempScoreNum += 10;
         }
@@ -46,7 +47,7 @@ public class ScoreTracker : MonoBehaviour
         bool tempBool = GameObject.FindGameObjectWithTag("SkateBoard").GetComponent<BoardController>().getIsGrounded();
         if (tempBool == false)
         {
-            //Time.deltaTime is a float, so conversion is needed
+     
             tempScoreNum += 5;
         }
     }

@@ -80,4 +80,7 @@ public class BoardController : MonoBehaviour
     {
         isGrounded = false;
     }
+    public bool getIsGrounded(){
+        return isGrounded;
+    }
 }
