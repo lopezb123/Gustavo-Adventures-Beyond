@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - surface
+  - Skateboard
   layers:
   - Default
   - TransparentFX

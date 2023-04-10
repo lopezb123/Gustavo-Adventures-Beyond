@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.30692244, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -225,7 +225,7 @@ WheelCollider:
     m_ExtremumValue: 1
     m_AsymptoteSlip: 0.5
     m_AsymptoteValue: 0.75
-    m_Stiffness: 1
+    m_Stiffness: 4
   m_Enabled: 1
 --- !u!4 &125014020
 Transform:
@@ -968,7 +968,7 @@ GameObject:
   - component: {fileID: 447817595}
   m_Layer: 0
   m_Name: Skateboard
-  m_TagString: Untagged
+  m_TagString: Skateboard
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -986,9 +986,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boardBody: {fileID: 447817591}
-  speedForce: 50
+  speedForce: 100
+  turnForce: 12
   brakeForce: 500
-  maxAngle: 12
+  maxSpeed: 100
+  maxTurn: 10
   FLCollider: {fileID: 738015316}
   FRCollider: {fileID: 806702548}
   BLCollider: {fileID: 1220630744}
@@ -1722,7 +1724,7 @@ WheelCollider:
     m_ExtremumValue: 1
     m_AsymptoteSlip: 0.5
     m_AsymptoteValue: 0.75
-    m_Stiffness: 1
+    m_Stiffness: 4
   m_Enabled: 1
 --- !u!1001 &788841373
 PrefabInstance:
@@ -1898,7 +1900,7 @@ WheelCollider:
     m_ExtremumValue: 1
     m_AsymptoteSlip: 0.5
     m_AsymptoteValue: 0.75
-    m_Stiffness: 1
+    m_Stiffness: 4
   m_Enabled: 1
 --- !u!1001 &856396025
 PrefabInstance:
@@ -2489,7 +2491,7 @@ WheelCollider:
     m_ExtremumValue: 1
     m_AsymptoteSlip: 0.5
     m_AsymptoteValue: 0.75
-    m_Stiffness: 1
+    m_Stiffness: 4
   m_Enabled: 1
 --- !u!1001 &1251294414
 PrefabInstance:
