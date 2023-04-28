@@ -44,6 +44,8 @@ public class MenusController : MonoBehaviour
     //Restarts the game level
     public void Restart(){
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        Time.timeScale = 1f;
+        GameIsPaused = false;
     }
 
     //Pulls up the options menu
