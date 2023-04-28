@@ -473,8 +473,8 @@ Canvas:
   m_GameObject: {fileID: 150240056}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
-  m_Camera: {fileID: 0}
+  m_RenderMode: 1
+  m_Camera: {fileID: 808437213}
   m_PlaneDistance: 100
   m_PixelPerfect: 1
   m_ReceivesEvents: 1
@@ -520,6 +520,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pauseMenuUI: {fileID: 106477435}
+  optionsMenuUI: {fileID: 0}
 --- !u!1 &156895018
 GameObject:
   m_ObjectHideFlags: 0
@@ -972,7 +973,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 357166727}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 150240061}
+        m_TargetAssemblyTypeName: MenusController, Assembly-CSharp
+        m_MethodName: QuitGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &357166727
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1291,7 +1304,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 381713385}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 150240061}
+        m_TargetAssemblyTypeName: MenusController, Assembly-CSharp
+        m_MethodName: OptionsMenu
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &381713385
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1475,7 +1500,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 421539990}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 150240061}
+        m_TargetAssemblyTypeName: MenusController, Assembly-CSharp
+        m_MethodName: Resume
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &421539990
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2867,7 +2904,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1044718336}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 150240061}
+        m_TargetAssemblyTypeName: MenusController, Assembly-CSharp
+        m_MethodName: Restart
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1044718336
 MonoBehaviour:
   m_ObjectHideFlags: 0

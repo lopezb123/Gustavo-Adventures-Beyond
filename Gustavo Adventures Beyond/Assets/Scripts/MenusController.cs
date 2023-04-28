@@ -1,12 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MenusController : MonoBehaviour
 {
     public static bool GameIsPaused = false;
-
     public GameObject pauseMenuUI;
+    public GameObject optionsMenuUI;
 
     // Update is called once per frame
     void Update()
@@ -19,21 +20,40 @@ public class MenusController : MonoBehaviour
                 Pause();
             }
         }
+    }
 
-        //Fuction for if we desire to resume the game
-        //Remove pause menu and resume time
-        void Resume(){
-            pauseMenuUI.SetActive(false);
-            Time.timeScale = 1f;
-            GameIsPaused = false;
-        }
 
-        //Function for if we desire to pause the game
-        //Bring up pause menu and freeze time
-        void Pause(){
-            pauseMenuUI.SetActive(true);
-            Time.timeScale = 0f;
-            GameIsPaused = true;
-        }
+    //Fuction for if we desire to resume the game
+    //Remove pause menu and resume time
+    public void Resume()
+    {
+        pauseMenuUI.SetActive(false);
+        Time.timeScale = 1f;
+        GameIsPaused = false;
+    }
+
+    //Function for if we desire to pause the game
+    //Bring up pause menu and freeze time
+    void Pause()
+    {
+        pauseMenuUI.SetActive(true);
+        Time.timeScale = 0f;
+        GameIsPaused = true;
+    }
+
+    //Restarts the game level
+    public void Restart(){
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    //Pulls up the options menu
+    public void OptionsMenu(){
+
+    }
+
+    //Exits the game
+    public void QuitGame()
+    {
+        Debug.Log("Quitting game...");
     }
 }
