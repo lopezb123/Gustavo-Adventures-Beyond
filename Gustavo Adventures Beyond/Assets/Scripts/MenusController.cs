@@ -42,6 +42,7 @@ public class MenusController : MonoBehaviour
     }
 
     //Restarts the game level
+    //Need to unpause the game after restarting the scene, else the game won't load properly
     public void Restart(){
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         Time.timeScale = 1f;
@@ -54,8 +55,8 @@ public class MenusController : MonoBehaviour
     }
 
     //Exits the game
-    public void QuitGame()
-    {
+    public void QuitGame(){
         Debug.Log("Quitting game...");
+        Application.Quit();
     }
 }
