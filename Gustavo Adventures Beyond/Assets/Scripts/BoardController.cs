@@ -19,8 +19,10 @@ public class BoardController : MonoBehaviour
     [SerializeField] private Rigidbody boardBody;
 
     [SerializeField] private float speedForce;
+    [SerializeField] private float turnForce;
     [SerializeField] private float brakeForce;
-    [SerializeField] private float maxAngle;
+    [SerializeField] private float maxSpeed;
+    [SerializeField] private float maxTurn;
 
     [SerializeField] private WheelCollider FLCollider;
     [SerializeField] private WheelCollider FRCollider;
@@ -58,27 +60,36 @@ public class BoardController : MonoBehaviour
     }
     private void HandleSpeed()
     {
-        FLCollider.motorTorque = vertInput * speedForce;
-        FRCollider.motorTorque = vertInput * speedForce;
-        BLCollider.motorTorque = vertInput * speedForce;
-        BRCollider.motorTorque = vertInput * speedForce;
+        //Only increase speed, if speed is not higher than max speed
+        if (!(FLCollider.motorTorque > maxSpeed))
+        {
+            FLCollider.motorTorque = vertInput * speedForce;
+            FRCollider.motorTorque = vertInput * speedForce;
+            BLCollider.motorTorque = vertInput * speedForce;
+            BRCollider.motorTorque = vertInput * speedForce;
+        }
     }
 
     private void HandleSteering()
     {
-        turnAngle = maxAngle * horInput;
-        FLCollider.steerAngle = turnAngle;
-        FRCollider.steerAngle = turnAngle;
+        //Only turn more, if turn angle is not higher than max turn
+        turnAngle = turnForce * horInput;
+        if (!(turnAngle > maxTurn)) {
+            FLCollider.steerAngle = turnAngle;
+            FRCollider.steerAngle = turnAngle;
+        }
     }
 
     
     private void OnCollisionEnter(Collision collision)
     {
         isGrounded = true;
+        //GameObject.FindGameObjectWithTag("Skateboard").GetComponent<Rigidbody>().useGravity = false;
     }
     private void OnCollisionExit(Collision collision)
     {
         isGrounded = false;
+        //GameObject.FindGameObjectWithTag("Skateboard").GetComponent<Rigidbody>().useGravity = true;
     }
     public bool getIsGrounded(){
         return isGrounded;
