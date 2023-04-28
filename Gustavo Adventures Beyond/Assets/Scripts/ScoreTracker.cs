@@ -30,7 +30,7 @@ public class ScoreTracker : MonoBehaviour
 
     private void trickScores()
     {
-        bool tempBool = GameObject.FindGameObjectWithTag("SkateBoard").GetComponent<BoardController>().getIsGrounded();
+        bool tempBool = GameObject.FindGameObjectWithTag("Skateboard").GetComponent<BoardController>().getIsGrounded();
         if (Input.GetKeyDown(KeyCode.Space) && tempBool)
         {
             tempScoreNum += 10;
@@ -44,7 +44,7 @@ public class ScoreTracker : MonoBehaviour
 
     private void airTimeCalculator()
     {
-        bool tempBool = GameObject.FindGameObjectWithTag("SkateBoard").GetComponent<BoardController>().getIsGrounded();
+        bool tempBool = GameObject.FindGameObjectWithTag("Skateboard").GetComponent<BoardController>().getIsGrounded();
         if (tempBool == false)
         {
      
