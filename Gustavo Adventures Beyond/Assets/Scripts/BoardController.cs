@@ -15,6 +15,7 @@ public class BoardController : MonoBehaviour
     private float currentBrake;
     private bool isGrounded = true;
     private Vector3 centMass;
+    public AudioSource movingBoardSound;
 
     [SerializeField] private Rigidbody boardBody;
 
@@ -60,6 +61,13 @@ public class BoardController : MonoBehaviour
     }
     private void HandleSpeed()
     {
+        /*Playing the moving sound if the skate board is moving*/
+        if(boardRb.velocity.magnitude > 0.15 && isGrounded){
+            movingBoardSound.enabled = true;
+        }
+        else{
+            movingBoardSound.enabled = false;
+        }
         //Only increase speed, if speed is not higher than max speed
         if (!(FLCollider.motorTorque > maxSpeed))
         {
