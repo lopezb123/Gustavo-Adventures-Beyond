@@ -28,6 +28,7 @@ public class MenusController : MonoBehaviour
     public void Resume()
     {
         pauseMenuUI.SetActive(false);
+        optionsMenuUI.SetActive(false);
         Time.timeScale = 1f;
         GameIsPaused = false;
     }
@@ -50,13 +51,21 @@ public class MenusController : MonoBehaviour
     }
 
     //Pulls up the options menu
-    public void OptionsMenu(){
-
+    public void OptionsMenu()
+    {
+        pauseMenuUI.SetActive(false);
+        optionsMenuUI.SetActive(true);
     }
 
     //Exits the game
     public void QuitGame(){
         Debug.Log("Quitting game...");
         Application.Quit();
+    }
+
+    //The code below is related to the Options Menu
+    public void Back(){
+        optionsMenuUI.SetActive(false);
+        pauseMenuUI.SetActive(true);
     }
 }
