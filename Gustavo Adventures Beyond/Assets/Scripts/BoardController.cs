@@ -34,6 +34,7 @@ public class BoardController : MonoBehaviour
     [SerializeField] private Transform FRTransform;
     [SerializeField] private Transform BLTransform;
     [SerializeField] private Transform BRTransform;
+
     void Start(){
         boardRb = boardBody;
         boardRb.centerOfMass = centMass;
@@ -62,7 +63,7 @@ public class BoardController : MonoBehaviour
     private void HandleSpeed()
     {
         /*Playing the moving sound if the skate board is moving*/
-        if(boardRb.velocity.magnitude > 0.15 && isGrounded){
+        if (boardRb.velocity.magnitude > 0.15 && isGrounded && MenusController.VolumeEnabled){
             movingBoardSound.enabled = true;
         }
         else{
@@ -92,12 +93,10 @@ public class BoardController : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         isGrounded = true;
-        //GameObject.FindGameObjectWithTag("Skateboard").GetComponent<Rigidbody>().useGravity = false;
     }
     private void OnCollisionExit(Collision collision)
     {
         isGrounded = false;
-        //GameObject.FindGameObjectWithTag("Skateboard").GetComponent<Rigidbody>().useGravity = true;
     }
     public bool getIsGrounded(){
         return isGrounded;

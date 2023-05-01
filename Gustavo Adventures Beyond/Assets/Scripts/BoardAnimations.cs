@@ -33,7 +33,7 @@ public class BoardAnimations : MonoBehaviour
         if(animator.GetCurrentAnimatorStateInfo(0).IsName("Idle")){
             BoardTrickSound.enabled = false;
         }
-        else{
+        else if(MenusController.VolumeEnabled){
             BoardTrickSound.enabled = true;
         }
     }

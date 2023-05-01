@@ -9,9 +9,18 @@ public class MenusController : MonoBehaviour
     public static bool VolumeEnabled = true;
     public GameObject pauseMenuUI;
     public GameObject optionsMenuUI;
-    public GameObject musicAudio;
+    public GameObject cameraAudio;
+    public GameObject canvasAudio;
     public GameObject skateAudio;
     public Vector3 skateVelocity;
+
+    private void Start()
+    {
+        //Disabling the music so that it doesn't play on start up if player disabled volume before scene restart
+        if (!VolumeEnabled){
+            cameraAudio.GetComponent<AudioSource>().enabled = false;
+        }
+    }
 
     // Update is called once per frame
     void Update()
@@ -38,6 +47,12 @@ public class MenusController : MonoBehaviour
 
         //Resume playing skateboard audio by enabling it and resetting velocity
         skateAudio.GetComponent<Rigidbody>().velocity = skateVelocity;
+
+        //Change background music
+        if (VolumeEnabled){
+            cameraAudio.GetComponent<AudioSource>().enabled = true;
+            canvasAudio.GetComponent<AudioSource>().enabled = false;
+        }
     }
 
     //Function for if we desire to pause the game
@@ -52,6 +67,12 @@ public class MenusController : MonoBehaviour
         skateAudio.GetComponent<AudioSource>().enabled = false;
         skateVelocity = skateAudio.GetComponent<Rigidbody>().velocity;
         skateAudio.GetComponent<Rigidbody>().velocity = new Vector3(0,0,0);
+
+        //Change background music
+        if (VolumeEnabled){
+            cameraAudio.GetComponent<AudioSource>().enabled = false;
+            canvasAudio.GetComponent<AudioSource>().enabled = true;
+        }
     }
 
     //Restarts the game level
@@ -81,14 +102,16 @@ public class MenusController : MonoBehaviour
         pauseMenuUI.SetActive(true);
     }
 
-    /*
-     * Function will enable or disable the sounds playing in the game
-    public void SetVolume(){
+    //Function will enable or disable the sounds playing in the game
+    public void VolumeToggle(){
         if (VolumeEnabled){
-            VolumeEnabled
+            //Disable all sounds
+            VolumeEnabled = false;
+            canvasAudio.GetComponent<AudioSource>().enabled = false;
         } else {
-
+            //Renable sounds
+            VolumeEnabled = true;
+            canvasAudio.GetComponent<AudioSource>().enabled = true;
         }
     }
-    */
 }
