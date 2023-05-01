@@ -6,8 +6,12 @@ using UnityEngine.SceneManagement;
 public class MenusController : MonoBehaviour
 {
     public static bool GameIsPaused = false;
+    public static bool VolumeEnabled = true;
     public GameObject pauseMenuUI;
     public GameObject optionsMenuUI;
+    public GameObject musicAudio;
+    public GameObject skateAudio;
+    public Vector3 skateVelocity;
 
     // Update is called once per frame
     void Update()
@@ -31,6 +35,9 @@ public class MenusController : MonoBehaviour
         optionsMenuUI.SetActive(false);
         Time.timeScale = 1f;
         GameIsPaused = false;
+
+        //Resume playing skateboard audio by enabling it and resetting velocity
+        skateAudio.GetComponent<Rigidbody>().velocity = skateVelocity;
     }
 
     //Function for if we desire to pause the game
@@ -40,6 +47,11 @@ public class MenusController : MonoBehaviour
         pauseMenuUI.SetActive(true);
         Time.timeScale = 0f;
         GameIsPaused = true;
+
+        //Pausing Skateboard audio
+        skateAudio.GetComponent<AudioSource>().enabled = false;
+        skateVelocity = skateAudio.GetComponent<Rigidbody>().velocity;
+        skateAudio.GetComponent<Rigidbody>().velocity = new Vector3(0,0,0);
     }
 
     //Restarts the game level
@@ -68,4 +80,15 @@ public class MenusController : MonoBehaviour
         optionsMenuUI.SetActive(false);
         pauseMenuUI.SetActive(true);
     }
+
+    /*
+     * Function will enable or disable the sounds playing in the game
+    public void SetVolume(){
+        if (VolumeEnabled){
+            VolumeEnabled
+        } else {
+
+        }
+    }
+    */
 }
