@@ -15,13 +15,13 @@ public class CameraFollow : MonoBehaviour
         turn();
     }
 
-    private void move()
+    public void move()
     {
         var targetPosition = target.TransformPoint(offset);
         transform.position = Vector3.Lerp(transform.position, targetPosition, moveSpeed * Time.deltaTime);
     }
 
-    private void turn()
+    public void turn()
     {
         var directrion = target.position - transform.position;
         var rotation = Quaternion.LookRotation(directrion, Vector3.up);
