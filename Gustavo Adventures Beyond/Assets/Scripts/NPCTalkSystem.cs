@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class NPCTalkSystem : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class NPCTalkSystem : MonoBehaviour
     [SerializeField] public Canvas interacts;
     //the speech bubble for the npc
     [SerializeField] public Canvas speech;
+    [SerializeField] public GameObject GeorgieMovement;
 
     // Start is called before the first frame update
     void Start()
@@ -31,6 +33,8 @@ public class NPCTalkSystem : MonoBehaviour
         if(player.name == "Skateboard"){
             interacts.enabled = true;
             playerDetector = true;
+            //stops the npc to talk to them
+            GeorgieMovement.GetComponent<NavMeshAgent>().isStopped = true; 
         }
     }
 
@@ -38,5 +42,7 @@ public class NPCTalkSystem : MonoBehaviour
             playerDetector = false;
             interacts.enabled = false;
             speech.enabled = false;
+            //Lets the npc move again after leaving if you have talked to them
+            GeorgieMovement.GetComponent<NavMeshAgent>().isStopped = false; 
     }
 }
