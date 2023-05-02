@@ -19,7 +19,7 @@ public class chaseMechanism : StateMachineBehaviour
     {
         agent.SetDestination(player.position);
          float distance = Vector3.Distance(player.position, animator.transform.position);
-        if(distance >= 8)
+        if(distance >= 12)
           animator.SetBool("isIdle", true);
           
         

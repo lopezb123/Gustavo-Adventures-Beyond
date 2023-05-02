@@ -5,7 +5,7 @@ using UnityEngine;
 public class IdleStateBunstavo : StateMachineBehaviour
 {
     Transform player;
-    float chaseRange = 8;
+    float chaseRange = 12;
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
