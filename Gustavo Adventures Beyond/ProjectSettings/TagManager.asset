@@ -6,6 +6,7 @@ TagManager:
   tags:
   - surface
   - Skateboard
+  - SodaCan
   layers:
   - Default
   - TransparentFX
