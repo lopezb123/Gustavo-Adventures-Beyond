@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class MenusController : MonoBehaviour
 {
     public static bool GameIsPaused = false;
-    public static bool GameIsWon = false;
+    public static bool GameIsWon;
     public static bool VolumeEnabled = true;
     public GameObject pauseMenuUI;
     public GameObject winMenuUI;
@@ -24,6 +24,7 @@ public class MenusController : MonoBehaviour
             cameraAudio.GetComponent<AudioSource>().enabled = false;
         }
 
+        //Have to set the GameIsWon to false at the beginning, else the restart button from the win menu will keep the game paused
         GameIsWon = false;
     }
 
@@ -40,10 +41,8 @@ public class MenusController : MonoBehaviour
         }
 
         //Will pause the game and bring up the win menu if win score is met
-        if (!GameIsWon){
-            if (uiCamera.GetComponent<ScoreTracker>().scoreNum >= 100){
+        if (!GameIsWon && uiCamera.GetComponent<ScoreTracker>().scoreNum >= 100){
                 Win();
-            }
         }
     }
 
