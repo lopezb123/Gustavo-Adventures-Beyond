@@ -6389,7 +6389,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movingBoardSound: {fileID: 447817596}
-  jumpEnabled: 1
   boardBody: {fileID: 447817591}
   speedForce: 85
   turnForce: 12
@@ -6400,7 +6399,6 @@ MonoBehaviour:
   FRCollider: {fileID: 806702548}
   BLCollider: {fileID: 1220630744}
   BRCollider: {fileID: 125014019}
-  BoxCollider: {fileID: 447817597}
   FLTransform: {fileID: 372097085}
   FRTransform: {fileID: 156895019}
   BLTransform: {fileID: 1662955545}
@@ -6571,7 +6569,7 @@ BoxCollider:
   m_GameObject: {fileID: 447817588}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 0.23, y: 0.1, z: 0.6}
   m_Center: {x: 0, y: 0, z: 0}
