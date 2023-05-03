@@ -4,8 +4,14 @@ using UnityEngine;
 
 public class SodaController : MonoBehaviour
 {
+    [SerializeField] GameObject uiCamera;
 
-    [SerializeField] GameObject scoreTracker;
-    // Start is called before the first frame update
-
+    private void OnTriggerEnter(Collider other)
+    {
+        //Debug.Log("collision with sodacan");
+        if(other.tag == "Skateboard"){
+            uiCamera.GetComponent<ScoreTracker>().SodaCollected();
+            gameObject.SetActive(false);
+        }
+    }
 }

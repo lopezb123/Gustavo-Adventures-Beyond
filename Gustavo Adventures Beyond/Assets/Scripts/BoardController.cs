@@ -93,6 +93,7 @@ public class BoardController : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         isGrounded = true;
+        //Debug.Log("Object that collided with me: " + collision.gameObject.name);
     }
     private void OnCollisionExit(Collision collision)
     {
