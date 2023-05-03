@@ -6,8 +6,11 @@ using UnityEngine.SceneManagement;
 public class MenusController : MonoBehaviour
 {
     public static bool GameIsPaused = false;
+    public static bool GameIsWon;
     public static bool VolumeEnabled = true;
     public GameObject pauseMenuUI;
+    public GameObject winMenuUI;
+    public GameObject uiCamera;
     public GameObject optionsMenuUI;
     public GameObject cameraAudio;
     public GameObject canvasAudio;
@@ -20,6 +23,9 @@ public class MenusController : MonoBehaviour
         if (!VolumeEnabled){
             cameraAudio.GetComponent<AudioSource>().enabled = false;
         }
+
+        //Have to set the GameIsWon to false at the beginning, else the restart button from the win menu will keep the game paused
+        GameIsWon = false;
     }
 
     // Update is called once per frame
@@ -33,13 +39,18 @@ public class MenusController : MonoBehaviour
                 Pause();
             }
         }
-    }
 
+        //Will pause the game and bring up the win menu if win score is met
+        if (!GameIsWon && uiCamera.GetComponent<ScoreTracker>().scoreNum >= 500){
+                Win();
+        }
+    }
 
     //Fuction for if we desire to resume the game
     //Remove pause menu and resume time
     public void Resume()
     {
+        winMenuUI.SetActive(false);
         pauseMenuUI.SetActive(false);
         optionsMenuUI.SetActive(false);
         Time.timeScale = 1f;
@@ -59,6 +70,7 @@ public class MenusController : MonoBehaviour
     //Bring up pause menu and freeze time
     void Pause()
     {
+        winMenuUI.SetActive(false);
         pauseMenuUI.SetActive(true);
         Time.timeScale = 0f;
         GameIsPaused = true;
@@ -74,6 +86,28 @@ public class MenusController : MonoBehaviour
             canvasAudio.GetComponent<AudioSource>().enabled = true;
         }
     }
+
+    //The win menu acts similarly to the Resume function but calls a different Menu
+    public void Win()
+    {
+        winMenuUI.SetActive(true);
+        Time.timeScale = 0f;
+        GameIsPaused = true;
+        GameIsWon = true;
+
+        //Pausing Skateboard audio
+        skateAudio.GetComponent<AudioSource>().enabled = false;
+        skateVelocity = skateAudio.GetComponent<Rigidbody>().velocity;
+        skateAudio.GetComponent<Rigidbody>().velocity = new Vector3(0, 0, 0);
+
+        //Change background music
+        if (VolumeEnabled)
+        {
+            cameraAudio.GetComponent<AudioSource>().enabled = false;
+            canvasAudio.GetComponent<AudioSource>().enabled = true;
+        }
+    }
+
 
     //Restarts the game level
     //Need to unpause the game after restarting the scene, else the game won't load properly

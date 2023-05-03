@@ -7,12 +7,11 @@ public class ScoreTracker : MonoBehaviour
 {
     public string totalScore;
     public string trickScoreCurrent;
-    private int scoreNum = 0;
+    public int scoreNum = 0;
     private int tempScoreNum = 0;
     public Text score;
     public Text currentTrickScore;
-
-
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -28,20 +27,23 @@ public class ScoreTracker : MonoBehaviour
     {
         score.text = totalScore + scoreNum;
         scoreMultiplier();
+        
     }
 
     private void trickScores()
     {
-        bool tempBool = GameObject.FindGameObjectWithTag("Skateboard").GetComponent<BoardController>().getIsGrounded();
-        if (Input.GetKeyDown(KeyCode.Space) && tempBool)
-        {
-            tempScoreNum += 10;
+        if (!MenusController.GameIsPaused) {
+            bool tempBool = GameObject.FindGameObjectWithTag("Skateboard").GetComponent<BoardController>().getIsGrounded();
+            if (Input.GetKeyDown(KeyCode.Space) && tempBool)
+            {
+                tempScoreNum += 10;
+            }
+            else if (Input.GetKeyDown(KeyCode.K))
+            {
+                tempScoreNum += 20;
+            }
+            scoreNum += tempScoreNum;
         }
-        else if (Input.GetKeyDown(KeyCode.K))
-        {
-            tempScoreNum += 20;
-        }
-        scoreNum += tempScoreNum;
     }
 
     private void airTimeCalculator()

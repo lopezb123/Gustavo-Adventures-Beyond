@@ -56,9 +56,10 @@ public class BoardController : MonoBehaviour
     private void ApplyJump()
     {
         //jump if it is either making contact with an object aka collision is entered or if the board yaxis is on the ground, which is y<0
-         if(Input.GetKeyDown(KeyCode.Space) && (isGrounded || (transform.position.y < 0))){
+        //also check if game is paused first
+        if (!MenusController.GameIsPaused && Input.GetKeyDown(KeyCode.Space) && (isGrounded || (transform.position.y < 0))) {
             boardRb.AddForce(Vector3.up * jumpForce, ForceMode.VelocityChange);
-         }
+        }
     }
     private void HandleSpeed()
     {
