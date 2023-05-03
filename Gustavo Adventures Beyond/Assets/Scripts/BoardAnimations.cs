@@ -16,25 +16,33 @@ public class BoardAnimations : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Space)){
-            //BoardTrickSound.enabled = true;
-            animator.SetTrigger("OllieTrigger");
-        }
-        else if(Input.GetKeyDown(KeyCode.K)){
-            //BoardTrickSound.enabled = true;
-            animator.SetTrigger("GroundKickFlipTrigger");
-        }
-        else
+        //Check to make sure the game is paused before allowing input
+        if (!MenusController.GameIsPaused)
         {
-            //BoardTrickSound.enabled = false;
-            animator.ResetTrigger("GroundKickFlipTrigger");
-        }
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                //BoardTrickSound.enabled = true;
+                animator.SetTrigger("OllieTrigger");
+            }
+            else if (Input.GetKeyDown(KeyCode.K))
+            {
+                //BoardTrickSound.enabled = true;
+                animator.SetTrigger("GroundKickFlipTrigger");
+            }
+            else
+            {
+                //BoardTrickSound.enabled = false;
+                animator.ResetTrigger("GroundKickFlipTrigger");
+            }
 
-        if(animator.GetCurrentAnimatorStateInfo(0).IsName("Idle")){
-            BoardTrickSound.enabled = false;
-        }
-        else if(MenusController.VolumeEnabled){
-            BoardTrickSound.enabled = true;
+            if (animator.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
+            {
+                BoardTrickSound.enabled = false;
+            }
+            else if (MenusController.VolumeEnabled)
+            {
+                BoardTrickSound.enabled = true;
+            }
         }
     }
 }
