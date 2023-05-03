@@ -19,7 +19,7 @@ public class ScoreTracker : MonoBehaviour
 
         //We can't put airTimeCalculator into update or fixed update because
         //then it won't add 5 points for every second of airtime, it will add for every frame of airtime
-        InvokeRepeating("airTimeCalculator", 0, 1.0f);
+        InvokeRepeating("airTimeCalculator", 0, 0.5f);
     }
 
     // Update is called once per frame

@@ -16,6 +16,8 @@ public class BoardController : MonoBehaviour
     private bool isGrounded = true;
     private Vector3 centMass;
     public AudioSource movingBoardSound;
+    private int wheelsOffGround = 4;
+    public bool jumpEnabled = true;
 
     [SerializeField] private Rigidbody boardBody;
 
@@ -29,6 +31,7 @@ public class BoardController : MonoBehaviour
     [SerializeField] private WheelCollider FRCollider;
     [SerializeField] private WheelCollider BLCollider;
     [SerializeField] private WheelCollider BRCollider;
+    [SerializeField] private BoxCollider BoxCollider;
 
     [SerializeField] private Transform FLTransform;
     [SerializeField] private Transform FRTransform;
@@ -57,8 +60,10 @@ public class BoardController : MonoBehaviour
     {
         //jump if it is either making contact with an object aka collision is entered or if the board yaxis is on the ground, which is y<0
         //also check if game is paused first
-        if (!MenusController.GameIsPaused && Input.GetKeyDown(KeyCode.Space) && (isGrounded || (transform.position.y < 0))) {
+        if (!MenusController.GameIsPaused && Input.GetKeyDown(KeyCode.Space) && (isGrounded || (transform.position.y < 0))) { //Add jumpEnabled later
             boardRb.AddForce(Vector3.up * jumpForce, ForceMode.VelocityChange);
+            //wheelsOffGround+=2;
+            jumpEnabled = false;
         }
     }
     private void HandleSpeed()
@@ -93,13 +98,41 @@ public class BoardController : MonoBehaviour
     
     private void OnCollisionEnter(Collision collision)
     {
-        isGrounded = true;
-        //Debug.Log("Object that collided with me: " + collision.gameObject.name);
+        //if (collision.collider == BLCollider || collision.collider == BRCollider || collision.collider == FLCollider || collision.collider == FRCollider)
+        //{
+            if (wheelsOffGround != 0)
+            {
+                wheelsOffGround--;
+            }
+            Debug.Log(wheelsOffGround);
+            //Debug.Log("Collison has happened");
+            //Debug.Log("Object that collided with me: " + collision.gameObject.name);
+
+            if (wheelsOffGround <= 2)
+            {
+                Debug.Log("IsGrounded enabled");
+                isGrounded = true;
+                jumpEnabled = true;
+                //wheelsOffGround = 0;
+            }
+        //}
     }
     private void OnCollisionExit(Collision collision)
     {
-        isGrounded = false;
+        //if (collision.collider == BLCollider || collision.collider == BRCollider || collision.collider == FLCollider || collision.collider == FRCollider)
+        //{
+            wheelsOffGround++;
+            Debug.Log(wheelsOffGround);
+
+            if (wheelsOffGround >= 3)
+            {
+                Debug.Log("IsGrounded disabled");
+                isGrounded = false;
+                jumpEnabled = false;
+            }
+        //}
     }
+
     public bool getIsGrounded(){
         return isGrounded;
     }

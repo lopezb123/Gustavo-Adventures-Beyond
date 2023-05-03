@@ -6364,11 +6364,10 @@ GameObject:
   m_Component:
   - component: {fileID: 447817592}
   - component: {fileID: 447817591}
-  - component: {fileID: 447817590}
-  - component: {fileID: 447817593}
   - component: {fileID: 447817589}
   - component: {fileID: 447817594}
   - component: {fileID: 447817595}
+  - component: {fileID: 447817597}
   - component: {fileID: 447817596}
   m_Layer: 0
   m_Name: Skateboard
@@ -6390,6 +6389,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movingBoardSound: {fileID: 447817596}
+  jumpEnabled: 1
   boardBody: {fileID: 447817591}
   speedForce: 85
   turnForce: 12
@@ -6400,23 +6400,11 @@ MonoBehaviour:
   FRCollider: {fileID: 806702548}
   BLCollider: {fileID: 1220630744}
   BRCollider: {fileID: 125014019}
+  BoxCollider: {fileID: 447817597}
   FLTransform: {fileID: 372097085}
   FRTransform: {fileID: 156895019}
   BLTransform: {fileID: 1662955545}
   BRTransform: {fileID: 346078711}
---- !u!65 &447817590
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 447817588}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Size: {x: 0.28, y: 0.15, z: 0.78}
-  m_Center: {x: 0, y: 0.09, z: 0}
 --- !u!54 &447817591
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -6450,19 +6438,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: -90.172, z: 0}
---- !u!65 &447817593
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 447817588}
-  m_Material: {fileID: 13400000, guid: ed0c5e4bb9acead4eb2a4ced24b522bb, type: 2}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Size: {x: 0.285, y: 0.15, z: 0.785}
-  m_Center: {x: 0, y: 0.091, z: 0}
 --- !u!136 &447817594
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -6473,7 +6448,7 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.09
+  m_Radius: 0.08
   m_Height: 0.81
   m_Direction: 2
   m_Center: {x: 0, y: 0.1, z: 0}
@@ -6487,7 +6462,7 @@ CapsuleCollider:
   m_Material: {fileID: 13400000, guid: ed0c5e4bb9acead4eb2a4ced24b522bb, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.09
+  m_Radius: 0.08
   m_Height: 0.823
   m_Direction: 2
   m_Center: {x: 0, y: 0.1, z: 0}
@@ -6587,6 +6562,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!65 &447817597
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 447817588}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.23, y: 0.1, z: 0.6}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!4 &456163112 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 493086, guid: a2d22ce70dfdb254e9cf1a761853209a, type: 3}
