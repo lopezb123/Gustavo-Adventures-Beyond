@@ -8,6 +8,8 @@ public class MenusController : MonoBehaviour
     public static bool GameIsPaused = false;
     public static bool VolumeEnabled = true;
     public GameObject pauseMenuUI;
+    public GameObject winMenuUI;
+    public GameObject uiCamera;
     public GameObject optionsMenuUI;
     public GameObject cameraAudio;
     public GameObject canvasAudio;
@@ -33,6 +35,28 @@ public class MenusController : MonoBehaviour
                 Pause();
             }
         }
+        
+        if(uiCamera.GetComponent<ScoreTracker>().scoreNum >= 100){
+            Win();
+        }
+    }
+    public void Win(){
+        winMenuUI.SetActive(true);
+        Time.timeScale = 0f;
+        GameIsPaused = true;
+        //Pausing Skateboard audio
+        skateAudio.GetComponent<AudioSource>().enabled = false;
+        skateVelocity = skateAudio.GetComponent<Rigidbody>().velocity;
+        skateAudio.GetComponent<Rigidbody>().velocity = new Vector3(0,0,0);
+
+        //Change background music
+        if (VolumeEnabled){
+            cameraAudio.GetComponent<AudioSource>().enabled = false;
+            canvasAudio.GetComponent<AudioSource>().enabled = true;
+        }
+
+
+        
     }
 
 
@@ -40,6 +64,7 @@ public class MenusController : MonoBehaviour
     //Remove pause menu and resume time
     public void Resume()
     {
+        winMenuUI.SetActive(false);
         pauseMenuUI.SetActive(false);
         optionsMenuUI.SetActive(false);
         Time.timeScale = 1f;
@@ -59,6 +84,7 @@ public class MenusController : MonoBehaviour
     //Bring up pause menu and freeze time
     void Pause()
     {
+        winMenuUI.SetActive(false);
         pauseMenuUI.SetActive(true);
         Time.timeScale = 0f;
         GameIsPaused = true;

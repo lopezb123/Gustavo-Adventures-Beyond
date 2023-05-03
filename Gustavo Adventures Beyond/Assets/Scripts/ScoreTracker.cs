@@ -7,12 +7,11 @@ public class ScoreTracker : MonoBehaviour
 {
     public string totalScore;
     public string trickScoreCurrent;
-    private int scoreNum = 0;
+    public int scoreNum = 0;
     private int tempScoreNum = 0;
     public Text score;
     public Text currentTrickScore;
-
-
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -28,6 +27,7 @@ public class ScoreTracker : MonoBehaviour
     {
         score.text = totalScore + scoreNum;
         scoreMultiplier();
+        
     }
 
     private void trickScores()
