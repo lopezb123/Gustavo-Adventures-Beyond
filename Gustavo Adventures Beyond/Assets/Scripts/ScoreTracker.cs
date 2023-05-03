@@ -11,6 +11,8 @@ public class ScoreTracker : MonoBehaviour
     private int tempScoreNum = 0;
     public Text score;
     public Text currentTrickScore;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -47,7 +49,6 @@ public class ScoreTracker : MonoBehaviour
         bool tempBool = GameObject.FindGameObjectWithTag("Skateboard").GetComponent<BoardController>().getIsGrounded();
         if (tempBool == false)
         {
-     
             tempScoreNum += 5;
         }
     }
@@ -58,4 +59,7 @@ public class ScoreTracker : MonoBehaviour
         tempScoreNum = 0;
     }
 
+    public void SodaCollected(){
+        scoreNum += 50;
+    }
 }
