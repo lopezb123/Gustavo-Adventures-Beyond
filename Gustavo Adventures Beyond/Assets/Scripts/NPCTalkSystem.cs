@@ -23,7 +23,7 @@ public class NPCTalkSystem : MonoBehaviour
     void Update()
     {
         //tests if gustavo is in the area and pressed E
-        if(playerDetector && Input.GetKeyDown(KeyCode.E)){
+        if(!MenusController.GameIsPaused && playerDetector && Input.GetKeyDown(KeyCode.E)){
                 interacts.enabled = false;
                 speech.enabled = true;
         }
