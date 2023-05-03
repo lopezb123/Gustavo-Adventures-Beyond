@@ -41,7 +41,7 @@ public class MenusController : MonoBehaviour
         }
 
         //Will pause the game and bring up the win menu if win score is met
-        if (!GameIsWon && uiCamera.GetComponent<ScoreTracker>().scoreNum >= 100){
+        if (!GameIsWon && uiCamera.GetComponent<ScoreTracker>().scoreNum >= 500){
                 Win();
         }
     }
